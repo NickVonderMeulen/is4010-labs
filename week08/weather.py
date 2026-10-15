@@ -4,20 +4,12 @@ import os
 import sys
 from pathlib import Path
 
-try:
-    from .favorites import FavoritesManager
-    from .weather_api import (
-        WeatherAPI,
-        format_current_weather,
-        format_forecast,
-    )
-except ImportError:
-    from favorites import FavoritesManager
-    from weather_api import (
-        WeatherAPI,
-        format_current_weather,
-        format_forecast,
-    )
+from week08.favorites import FavoritesManager
+from week08.weather_api import (
+    WeatherAPI,
+    format_current_weather,
+    format_forecast,
+)
 
 
 FAVORITES_FILE = Path(__file__).resolve().parent / "favorites.json"
@@ -104,12 +96,11 @@ def main(argv=None) -> int:
                 )
                 return 1
 
-            print(f"Added favorite '{args.name}'.")
+            print(f"Added favorite '{args.name}': {args.location}")
             return 0
 
         if args.favorites_command == "list":
             saved = favorites.list_all()
-
             if not saved:
                 print("No favorites saved.")
             else:
@@ -147,7 +138,10 @@ def main(argv=None) -> int:
     if args.command == "current":
         data = api.get_current_weather(location)
         if data is None:
-            print("Error: could not retrieve current weather.", file=sys.stderr)
+            print(
+                "Error: could not retrieve current weather.",
+                file=sys.stderr,
+            )
             return 1
 
         print(format_current_weather(data))
@@ -161,7 +155,10 @@ def main(argv=None) -> int:
             return 1
 
         if data is None:
-            print("Error: could not retrieve forecast.", file=sys.stderr)
+            print(
+                "Error: could not retrieve forecast.",
+                file=sys.stderr,
+            )
             return 1
 
         print(format_forecast(data))
