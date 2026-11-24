@@ -43,7 +43,6 @@ impl fmt::Display for PasswordStrength {
 ///   3–4 → Medium
 ///   5–6 → Strong
 ///   7   → VeryStrong
-
 pub fn validate_strength(password: &str) -> PasswordStrength {
     let mut score = 0;
 
@@ -83,7 +82,6 @@ pub fn validate_strength(password: &str) -> PasswordStrength {
 /// Check for these patterns (case-insensitive):
 ///   - All characters are the same (e.g. "aaaa", "1111")
 ///   - The password is one of the 10 common passwords listed in COMMON_PASSWORDS
-
 pub fn check_common_patterns(password: &str) -> bool {
     if password.is_empty() {
         return false;
@@ -111,7 +109,6 @@ pub fn check_common_patterns(password: &str) -> bool {
 ///   + any non-alphanumeric  → 94
 ///
 /// Use `f64::log2(charset_size as f64) * length as f64`.
-
 pub fn calculate_entropy(password: &str) -> f64 {
     let length = password.chars().count();
 

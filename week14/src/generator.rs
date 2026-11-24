@@ -21,7 +21,6 @@ use rand::Rng;
 /// let pwd = generate_random(12, false);
 /// assert_eq!(pwd.len(), 12);
 /// ```
-
 pub fn generate_random(length: usize, use_symbols: bool) -> String {
     assert!(length > 0, "Password length must be greater than zero");
 
@@ -51,7 +50,6 @@ pub fn generate_random(length: usize, use_symbols: bool) -> String {
 /// // e.g. "apple-river-cloud"
 /// assert_eq!(phrase.split('-').count(), 3);
 /// ```
-
 pub fn generate_passphrase(word_count: usize, separator: char) -> String {
     let mut rng = rand::thread_rng();
 
@@ -74,7 +72,6 @@ pub fn generate_passphrase(word_count: usize, separator: char) -> String {
 /// assert_eq!(pin.len(), 6);
 /// assert!(pin.chars().all(|c| c.is_ascii_digit()));
 /// ```
-
 pub fn generate_pin(length: usize) -> String {
     assert!(length > 0, "PIN length must be greater than zero");
 
@@ -103,7 +100,6 @@ mod tests {
     use super::*;
 
     // --- generate_random ---
-
     #[test]
     fn test_random_correct_length() {
         let pwd = generate_random(12, false);
@@ -145,7 +141,6 @@ mod tests {
     }
 
     // --- generate_passphrase ---
-
     #[test]
     fn test_passphrase_word_count() {
         let phrase = generate_passphrase(4, '-');
@@ -179,7 +174,6 @@ mod tests {
     }
 
     // --- generate_pin ---
-
     #[test]
     fn test_pin_correct_length() {
         let pin = generate_pin(6);
